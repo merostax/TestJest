@@ -1,28 +1,72 @@
-# JestTest
+## Getting Started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+These instructions will get you setup to use `jest-preset-angular` in your project. For more detailed documentation,
+please check [online documentation](https://thymikee.github.io/jest-preset-angular).
 
-## Development server
+Install using [`yarn`](https://yarnpkg.com/en/package/jest-preset-angular):
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+yarn add -D jest jest-preset-angular @types/jest
+```
 
-## Code scaffolding
+Or [`npm`](https://www.npmjs.com/package/jest-preset-angular):
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install -D jest jest-preset-angular @types/jest
+```
 
-## Build
+## Configuration
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+In your project root, create `setup-jest.ts` file with following contents:
+
+```ts
+import 'jest-preset-angular/setup-jest';
+```
+
+Add the following section:
+
+- to your root `jest.config.js`
+
+```js
+// jest.config.js
+module.exports = {
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  globalSetup: 'jest-preset-angular/global-setup',
+};
+```
+
+- or to your root `package.json`
+
+```json
+{
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+    "globalSetup": "jest-preset-angular/global-setup"
+  }
+}
+```
+
+Adjust your `tsconfig.spec.json` to be:
+
+```json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "module": "CommonJs",
+    "types": ["jest"]
+  },
+  "include": ["src/**/*.spec.ts", "src/**/*.d.ts"]
+}
+```
 
 ## Running unit tests
 
 npm run test
+
 ## Running coverage
+
 npm run test:coverage
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
