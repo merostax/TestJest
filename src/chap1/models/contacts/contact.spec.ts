@@ -108,7 +108,7 @@ describe('Contact class tests', () => {
     expect(contact!.name).toEqual('barthauer');
   });
   it('should get and set email correctly', () => {
-    (contact as any)!.email = 'barthauer@barthauer.de';// explain  
+    (contact as any)!.email = 'barthauer@barthauer.de';// explain  as any
     expect((contact as any)!.email).toEqual('barthauer@barthauer.de');
   });
   
