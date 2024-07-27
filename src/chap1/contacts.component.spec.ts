@@ -1,4 +1,4 @@
-import { Contact } from './contact.model';
+import { Contact } from './contacts/contact.model';
 import { ContactsComponent } from './contacts.component';
 
 describe('ContactsComponent Tests', () => {
