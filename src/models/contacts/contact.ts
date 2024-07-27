@@ -26,11 +26,11 @@ export default class ContactClass {
       this._name = name;
     }
   
-    get email(): string {
+   private get email(): string {
       return this._email;
     }
   
-    set email(email: string) {
+   private set email(email: string) {
       this._email = email;
     }
   
