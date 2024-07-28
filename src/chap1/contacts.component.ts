@@ -4,7 +4,7 @@ import { Contact } from './contacts/contact.model';
 
 @Component({
   selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
+  template: " ",
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent {

@@ -3,6 +3,8 @@ import { DebugElement } from '@angular/core'; // —You can use DebugElement
 //HTMLEle-ment with additional methods and properties that can be useful for debugging
 //elements.
 
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
 
 import{ ComponentFixture,TestBed,fakeAsync,tick} from '@angular/core/testing';
 //1ComponentFixture : You can use it to create a fixture that you then can use for debugging.
@@ -16,9 +18,24 @@ import{ ComponentFixture,TestBed,fakeAsync,tick} from '@angular/core/testing';
 //3:TestBed api :You use this class to set up and configure your tests
 //3.1 its quite extensive but will be using for now configureTestingModule, override-Module, and createComponent methods
 
-
+/*------------------------------------------------------------------------------------------------------------------------------*/
 
 import { By } from '@angular/platform-browser';
 //is a class includedin the @angular/platform-browser module that you can use to select DOM ele-ments
 // lets say u wanna to select this,<i class="highlight-row">
 // u wanna be using something like this,By.css('.highlight-row'),,however theres also by.all,by.directive
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+// it disable angular animations for tests to run faster
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+import { BrowserDynamicTestingModule ,platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
+//BrowserDynamicTestingModule :is a module provided by Angular for setting up and running tests(is a part of testbed api) in a browser environment. 
+//It is used in conjunction with TestBed to configure the Angular testing environment. When testing Angular components, services, or modules that interact with the browser (e.g., rendering components, handling user events),
+
+
+//platformBrowserDynamicTesting :
+//It allows for the dynamic compilation of Angular components during tests. This is especially important in a development environment where components may not be precompiled
+/*------------------------------------------------------------------------------------------------------------------------------*/

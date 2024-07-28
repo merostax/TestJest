@@ -19,19 +19,19 @@ export class ContactService {
       );
   }
 
-  public getContact(id: number): Observable<Contact> {
-    return this.getContacts()
-      .pipe(
-        map(contacts => {
-          const contact = contacts.find(contact => contact.id === id);
-          if (!contact) {
-            throw new Error(`Contact with id ${id} not found`);
-          }
-          return contact;
-        }),
-        catchError(this.handleError)
-      );
-  }
+    public getContact(id: number): Observable<Contact> {
+      return this.getContacts()
+        .pipe(
+          map(contacts => {
+            const contact = contacts.find(contact => contact.id === id);
+            if (!contact) {
+              throw new Error(`Contact with id ${id} not found`);
+            }
+            return contact;
+          }),
+          catchError(this.handleError)
+        );
+    }
 
   public save(contact: Contact): Observable<Contact> {
     if (contact.id) {
