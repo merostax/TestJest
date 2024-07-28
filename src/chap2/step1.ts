@@ -16,7 +16,7 @@ import{ ComponentFixture,TestBed,fakeAsync,tick} from '@angular/core/testing';
 //2.2When using fakeAsync, you can use !!tick!! to simulate the passage of time. 
 
 //3:TestBed api :You use this class to set up and configure your tests
-//3.1 its quite extensive but will be using for now configureTestingModule, override-Module, and createComponent methods
+//3.1 its quite extensive but will be using for now configureTestingModule, initTestEnvironment, and createComponent methods
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -39,3 +39,7 @@ import { BrowserDynamicTestingModule ,platformBrowserDynamicTesting} from '@angu
 //platformBrowserDynamicTesting :
 //It allows for the dynamic compilation of Angular components during tests. This is especially important in a development environment where components may not be precompiled
 /*------------------------------------------------------------------------------------------------------------------------------*/
+
+
+//TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting()); // normally added in setup-jest.ts for a global config
+//This setup is crucial because it provides the Angular compiler and other services needed to compile and run Angular components in a testing context.

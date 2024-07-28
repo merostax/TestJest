@@ -4,6 +4,7 @@ describe('Contact class tests', () => {
   let contact: ContactClass|null; //Declares the contact variable as a any type(better implementation will come later using fixture)
   beforeEach(() => {
     //Executes beforeEach function before each test case
+    // explain if we have 2 beforeEach
     contact = new ContactClass();
   });
   it('should have a valid constructor', () => {
