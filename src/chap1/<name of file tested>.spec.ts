@@ -1,6 +1,7 @@
 //explain the structure of describe, it
 //explain testcases
-
+// note that for some angular testing plugins like jest plugins, they will look for a spec file to run them so make sure 
+// u stick to the naming convention
 describe('all chapters', () => {
 
   
