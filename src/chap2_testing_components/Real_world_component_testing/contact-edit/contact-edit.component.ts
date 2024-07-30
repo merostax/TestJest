@@ -1,42 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Contact } from '../../../chap1/contacts/contact.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Contact } from '../../../chap1/contacts';
 import { ContactService } from './contact.service';
 
 @Component({
   selector: 'app-contact-edit',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './contact-edit.component.html',
 })
 export class ContactEditComponent implements OnInit {
-  public contact?: Contact;
+  contact: Contact | null = null;
 
   constructor(
-    private contactService: ContactService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private contactService: ContactService
   ) {}
 
-  ngOnInit() {
-    this.loadContact();
-  }
-
-  public saveContact(contact: Contact) {
-    contact.favorite = !contact.favorite;
-    this.contactService.save(contact);
-  }
-
-  public loadContact(): void {
-    this.route.params.subscribe((params) => {
-      const id = +params['id'];
-      this.contactService.getContact(id).subscribe((contact) => {
-        this.contact = contact;
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.contactService.getContact(id).subscribe(existingContact => {
+        this.contact = existingContact || null;
       });
-    });
+    }
   }
 
-  public updateContact(contact: Contact): void {
-    this.contactService.save(contact).subscribe(() => {
-      this.router.navigate(['/']);
-    });
+  save(): void {
+    if (this.contact) {
+      this.contactService.saveContact(this.contact).subscribe(() => {
+        this.router.navigate(['/contacts']);
+      });
+    }
   }
 }

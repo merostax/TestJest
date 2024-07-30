@@ -7,7 +7,7 @@ describe('ContactsComponent Tests', () => {
     contactsComponent = new ContactsComponent();
   });
   it('should set instance correctly', () => {
-    expect(contactsComponent).not.toBeNull();
+    expect(contactsComponent).not.toBeNull();// later we ll stick to toBetrufuly
   });
   it('should be no contacts if there is no data', () => {
     expect(contactsComponent.contacts.length).toBe(0);

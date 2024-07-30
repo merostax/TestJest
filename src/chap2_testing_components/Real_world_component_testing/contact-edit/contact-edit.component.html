@@ -1,26 +1,24 @@
-<div *ngIf="contact">
-    <h2>Edit Contact</h2>
-    <form (ngSubmit)="updateContact(contact)">
-      <div>
-        <label for="name">Name:</label>
-        <input id="name" [(ngModel)]="contact.name" name="name" required />
-      </div>
-      <div>
-        <label for="email">Email:</label>
-        <input id="email" [(ngModel)]="contact.email" name="email" required type="email" />
-      </div>
-      <div>
-        <label for="phone">Phone:</label>
-        <input id="phone" [(ngModel)]="contact.phone" name="phone" required type="tel" />
-      </div>
-      <div>
-        <label for="favorite">Favorite:</label>
-        <input id="favorite" [(ngModel)]="contact.favorite" name="favorite" type="checkbox" />
-      </div>
-      <button type="submit">Save</button>
-    </form>
-  </div>
-  <div *ngIf="!contact">
-    <p>Loading contact...</p>
-  </div>
-  
+<h1>Edit Contact</h1>
+<form (ngSubmit)="save()">
+  <label>
+    Name:
+    <input [(ngModel)]="contact.name" name="name">
+  </label>
+  <label>
+    Email:
+    <input [(ngModel)]="contact.email" name="email">
+  </label>
+  <label>
+    Number:
+    <input [(ngModel)]="contact.number" name="number">
+  </label>
+  <label>
+    Country:
+    <input [(ngModel)]="contact.country" name="country">
+  </label>
+  <label>
+    Favorite:
+    <input type="checkbox" [(ngModel)]="contact.favorite" name="favorite">
+  </label>
+  <button type="submit">Save</button>
+</form>

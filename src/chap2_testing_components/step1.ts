@@ -31,15 +31,5 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 // it disable angular animations for tests to run faster
 /*------------------------------------------------------------------------------------------------------------------------------*/
 
-import { BrowserDynamicTestingModule ,platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
-//BrowserDynamicTestingModule :is a module provided by Angular for setting up and running tests(is a part of testbed api) in a browser environment. 
-//It is used in conjunction with TestBed to configure the Angular testing environment. When testing Angular components, services, or modules that interact with the browser (e.g., rendering components, handling user events),
-
-
-//platformBrowserDynamicTesting :
-//It allows for the dynamic compilation of Angular components during tests. This is especially important in a development environment where components may not be precompiled
-/*------------------------------------------------------------------------------------------------------------------------------*/
-
-
-//TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting()); // normally added in setup-jest.ts for a global config
-//This setup is crucial because it provides the Angular compiler and other services needed to compile and run Angular components in a testing context.
+import { of } from 'rxjs';
+//of is used to simulate the behavior of Observables 
