@@ -114,14 +114,3 @@ describe('update contact', () => {
 });
 });
 
-/*describe('saveContact() test', () => {
-it('should display contact name after contact set', fakeAsync(() => {
- component.contact = { id: 1, name: 'kt' };
- component.save();
-fixture.detectChanges();
-const nameInput = rootElement.query(By.css('#name'));
-tick();
-expect(nameInput.nativeElement.value).toBe('kt');
-}));
-});
-*/// show an example in selenium

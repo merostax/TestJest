@@ -218,12 +218,64 @@ describe('ContactEditComponent tests', () => {
 // check this link for more depth learning,https://jestjs.io/docs/mock-function-api
       
       component.ngOnInit();
+      // this is direkt call to the ngOninit
+
+      const ngOnInitMethod = component['ngOnInit'];
+      ngOnInitMethod.call(component);
+      // u may however going to be relying on the second one sometimes since it provides 
+      // more flexibility as well as dynamic calling
+      // which is in term short for component['ngOnInit']();
       expect(contactService.getContact).toHaveBeenCalledWith(1);
+        // toHaveBeenCalledWith(1), since contact has id of 1      
       expect(component.contact).toEqual(contact);
+      // in the load the contact will later be set to this.contact=contact so we should expect that at latest
+    });
+
+    it('should not load contact if id is not present', () => {
+      jest.spyOn(route.snapshot.paramMap, 'get').mockReturnValue(null);
+      // like mentioned try ur best to have at least 2 tests one for it should
+      // the other it should not,u can create alot of cases depending on ur input and ouput,
+      // in here since in ngonit it checks the id if its true,if not it does nothing,so the contactservice should
+      // not be called since the interne function of ngOninit is not completed,
+      // however is it a good practice in ur own function to add exceptions, like try catch, errorHanfler,if else, to cover
+      // the cases when something not being properly given or loaded,
+      component.ngOnInit();
+      expect(contactService.getContact).not.toHaveBeenCalled();
     });
 });
+describe('save contact', () => {
+  it('should save new contact and navigate to /contacts', () => {
+    const navigateSpy = jest.spyOn(router, 'navigate');
+    // in writing a tests,for a function always look for what is the latest thing that will
+    // be called, so basically example u have alot of if,else which is for testing 
+    // not a good idea to have alot of them,but lets break it down for a sec.
+    // u want always to ignore if(),for(),while(), and so on,because we want to ensure that
+    // we get to the inside of code and not worrin about if is true or not,
+    // the second thing , if there is 2 if and 2 elseif,this will create alot of cases,
+    // 2!,so 4 tests, 4! however  is 4*3*2*1, the number will get higher the more u have,
+    // and in that case u cant cover them all, try to have as minimum as possible,
+    // as well as having to do some object orientierung, which will create more functions,
+    // that calls each other in a clean way and the testing will be happy
+    jest.spyOn(contactService, 'saveContact').mockReturnValue(of(undefined));
+    component.contact = { id: 1, name: 'kt'};
+    component.save();
+
+    expect(contactService.saveContact).toHaveBeenCalledWith(component.contact);
+    expect(navigateSpy).toHaveBeenCalledWith(['/contacts']);
+  });
+})
           
- 
+ /*describe('saveContact() test', () => {
+it('should display contact name after contact set', fakeAsync(() => {
+ component.contact = { id: 1, name: 'kt' };
+ component.save();
+fixture.detectChanges();
+const nameInput = rootElement.query(By.css('#name'));
+tick();
+expect(nameInput.nativeElement.value).toBe('kt');
+}));
+});
+*/// show an example in selenium
 
 /*--------------------------------------------------------------------------------------------------------------*/
 
